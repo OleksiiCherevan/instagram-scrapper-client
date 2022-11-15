@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import './App.css';
+import Container from './components/Container';
+import Header from './components/Header';
+import Main from './components/Main';
+import { getDataAboutUser } from './http';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import users from './store/users';
+export default observer(
+  function App() {
+    return (
+      <div className="App">
+        <Header />
+        <Container >
+          <Main />
+        </Container>
+      </div>
+    );
+  })
 
-export default App;
+

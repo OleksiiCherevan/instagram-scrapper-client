@@ -11,8 +11,12 @@ const StyledHeader = styled.div`
 const Navigation = styled.span`
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
 `
 
 
@@ -22,6 +26,7 @@ const Header = ({ }) => {
   return (
     <StyledHeader>
       <Navigation>
+        <span>Для пошуку інформації про користувача введіть його nickname</span>
         <SearchUser />
       </Navigation>
     </StyledHeader>

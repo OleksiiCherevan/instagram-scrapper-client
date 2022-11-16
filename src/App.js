@@ -21,7 +21,6 @@ export default observer(() => {
       <Header />
       <Container>
         {
-          users.isLoading ? <Preloader /> :
             <Main />
         }
       </Container>

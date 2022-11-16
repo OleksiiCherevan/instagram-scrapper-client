@@ -21,12 +21,13 @@ class Users {
 
     fetchUserInfo(searchedName) {
         this.isLoading = true;
+        this.isError = false;
+
         getDataAboutUser(searchedName).then(
             (res) => {
                 const userInfo = res.data;
                 this.currentUserInfo = userInfo;
                 this.isLoading = false;
-                this.isError = false;
                 saveUserInfo(userInfo);
             }
         ).catch(e => {

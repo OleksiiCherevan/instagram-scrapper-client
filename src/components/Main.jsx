@@ -3,6 +3,8 @@ import styled from "styled-components";
 import users from "../store/users";
 import MOCK_DATA from "./../assets/mock_data.json";
 import { observer } from 'mobx-react-lite';
+import Preloader from "./Preloader";
+import Error from "./Error";
 
 const StyledMain = styled.div`
     margin-top: 40px;
@@ -165,12 +167,16 @@ const Main = observer(() => {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        console.log(user);
-    }, [user])
-    useEffect(() => {
         setUser(users.currentUserInfo)
-        console.log(users.currentUserInfo);
     }, [users.currentUserInfo])
+
+    if (users.isError) {
+        return <Error >Користувач не знайдений!</Error>
+    }
+
+    if (users.isLoading) {
+        return <Preloader />
+    }
 
     return (
         <StyledMain>

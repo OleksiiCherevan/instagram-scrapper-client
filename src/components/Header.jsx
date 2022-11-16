@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import styled from "styled-components"
-import users from "../store/users"
+import SearchUser from "./SearchUser"
 
 const StyledHeader = styled.div`
   height: 100px;
@@ -11,30 +11,26 @@ const StyledHeader = styled.div`
 const Navigation = styled.span`
   height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-`
-
-const Info = styled.span`
   color: white;
-  font-size: 1.3rem;
-  padding-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
 `
-function Header({}) {
-  const [nameToSearch, setNameToSearch] = useState("");
 
-  const handleSearchClick = () => {
-    users.fetchUserInfo(nameToSearch)
-  } 
+
+const Header = ({ }) => {
+  
+
   return (
     <StyledHeader>
       <Navigation>
-        <Info>Знайти про інформацію користувача: </Info>
-        <input type="text" onChange={e => setNameToSearch(e.target.value)} value={nameToSearch}/>
-        <input type="button" value="знайти" onClick={() => handleSearchClick()}/>
+        <span>Для пошуку інформації про користувача введіть його nickname</span>
+        <SearchUser />
       </Navigation>
     </StyledHeader>
   )
 }
+
 export default Header

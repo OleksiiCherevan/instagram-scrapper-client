@@ -1,23 +1,38 @@
 import { makeAutoObservable } from "mobx";
 import { SCRAP_URL } from "../config";
 import { getDataAboutUser } from "../http";
+import { getUserInfo, saveUserInfo } from "../utils";
 
 class Users {
     searchName = "";
-    isLoading = false;
+    
+    isLoading =  false;
+    isError = false;
     currentUserInfo = {};
-    cachedUsersInfo = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
+    // setCurrentUserInfo(userInfo) {
+    //     this.isLoading = false;
+    //     this.currentUserInfo = userInfo;
+    // } 
+
     fetchUserInfo(searchedName) {
-        getDataAboutUser(searchedName, ).then(
+        this.isLoading = true;
+        getDataAboutUser(searchedName).then(
             (res) => {
-                this.currentUserInfo = JSON.parse(res.data);
+                const userInfo = res.data;
+                this.currentUserInfo = userInfo;
+                this.isLoading = false;
+                this.isError = false;
+                saveUserInfo(userInfo);
             }
-        );
+        ).catch(e => {
+            this.isError = true; 
+        });
+     
     }
 }
 

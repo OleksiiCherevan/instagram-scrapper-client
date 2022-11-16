@@ -3,6 +3,7 @@ import styled from "styled-components";
 import users from "../store/users";
 import MOCK_DATA from "./../assets/mock_data.json";
 import { observer } from 'mobx-react-lite';
+import Preloader from "./Preloader";
 
 const StyledMain = styled.div`
     margin-top: 40px;
